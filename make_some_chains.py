@@ -27,11 +27,11 @@ if __name__ == "__main__":
     cov_in = np.matrix('1.0, 0.0; 0., 1.0')
     sampler = emcee.MHSampler(cov_in, ndim, ln_prob)
     p0 = (-100.0,100.0)
-    f = open("chain.dat", "w")
+    f = open("chain_long.dat", "w")
     f.close()
-    for result in sampler.sample(p0, iterations=20000, storechain=False):
+    for result in sampler.sample(p0, iterations=200000, storechain=False):
         position = result[0]
         chi2_out = result[1]
-        f = open("chain.dat", "a")
+        f = open("chain_long.dat", "a")
         f.write("{0:s}\n".format(" ".join(map(str,position))))
         f.close()
