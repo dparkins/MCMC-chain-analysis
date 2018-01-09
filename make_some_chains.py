@@ -39,7 +39,7 @@ if __name__ == "__main__":
         sampler = emcee.MHSampler(cov_in, ndim, ln_prob)
 
         if num_chains > 1:
-            file_name = "chain_{0:4d}.dat".format(ichain)
+            file_name = "chain_{0:1d}.dat".format(ichain)
             random_x = random.uniform(-500.0,500.0)
             random_y = random.uniform(-500.0,500.0)
             p0 = (random_x,random_y)
@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
         f = open(file_name, "w")
         f.close()
-        for result in sampler.sample(p0, iterations=200000, storechain=False):
+        for result in sampler.sample(p0, iterations=20000, storechain=False):
             position = result[0]
             chi2_out = result[1]
             f = open(file_name, "a")
